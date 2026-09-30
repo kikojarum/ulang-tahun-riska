@@ -8,7 +8,7 @@
   <!-- Tailwind CSS & Google Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Great+Vibes&family=Courier+Prime&display=swap" rel="stylesheet">
   
   <style>
@@ -232,8 +232,11 @@
   <canvas id="ambientCanvas"></canvas>
   <canvas id="fireworksCanvas"></canvas>
 
-  <!-- Background Music Utama -->
+  <!-- ==================== BACKGROUND MUSIC: KETATON CERITA ==================== -->
   <audio id="bgMusic" loop preload="auto">
+    <!-- File audio lokal yang disimpan satu folder -->
+    <source src="ketaton-cerita.mp3" type="audio/mpeg">
+    <!-- Cadangan streaming instrumen jika file lokal belum dimasukkan -->
     <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_c660c6d7d4.mp3?filename=romantic-love-story-piano-111164.mp3" type="audio/mpeg">
   </audio>
 
@@ -511,7 +514,7 @@
         </h1>
       </div>
 
-      <!-- KUPON HADIAH (DENGAN EFEK PINDAH/LARI 5 KALI) -->
+      <!-- KUPON HADIAH -->
       <div class="w-full max-w-xs mx-auto my-auto space-y-3 relative">
         <h4 class="text-xs font-semibold uppercase tracking-wider text-pink-200 mb-2">Pilih Kado & Kuponmu Hari Ini 🎟️</h4>
         
@@ -627,7 +630,7 @@
     }
 
     /* ============================================================
-       AUDIO & BACKGROUND MUSIC
+       AUDIO & BACKGROUND MUSIC (KETATON CERITA)
        ============================================================ */
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicBtn');
@@ -759,7 +762,7 @@
     });
 
     /* ============================================================
-       TIME TRACKER: HITUNG UMUR & PERJALANAN SEJAK 01 OKTOBER 2005
+       TIME TRACKER: HITUNG UMUR SEJAK 01 OKTOBER 2005
        ============================================================ */
     let counterInterval = null;
     function updateCounter() {
@@ -926,13 +929,13 @@
        ============================================================ */
     let runCount1 = 0;
     let runCount2 = 0;
-    const maxEscapes = 5; // Pindah sebanyak 5 kali
+    const maxEscapes = 5;
 
     const playfulTeases = [
       "Eits, gak kena! 😜",
       "Wlee coba lagi 😝",
       "Kok susah yaa? 🤪",
-      "Hampir kena tuh! 🏃‍♂️",
+      "Hampir kena tuh! 🏃‍♂️️",
       "Sekali lagi deh! 🤭"
     ];
 
@@ -943,7 +946,6 @@
         let currentCount = (counterKey === 1) ? runCount1 : runCount2;
 
         if (currentCount < maxEscapes) {
-          // Buat posisi acak lompatan (antara -65px sampai 65px)
           const randomX = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 45 + 30);
           const randomY = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 35 + 15);
 
@@ -956,7 +958,6 @@
           if (counterKey === 1) runCount1++;
           else runCount2++;
 
-          // Jika sudah kabur 5 kali, normalkan kembali
           if (((counterKey === 1) ? runCount1 : runCount2) >= maxEscapes) {
             setTimeout(() => {
               btnElement.style.transform = 'translate(0px, 0px) scale(1)';
@@ -967,12 +968,10 @@
             }, 300);
           }
         } else {
-          // Klik ke-6 (setelah 5 kali kabur): langsung klaim ke WA
           sendToWhatsApp(voucherName);
         }
       }
 
-      // Berlaku untuk sentuhan layar HP (touchstart) dan kursor (mouseenter / click)
       btnElement.addEventListener('touchstart', moveButton, { passive: false });
       btnElement.addEventListener('mouseenter', moveButton);
       btnElement.addEventListener('click', moveButton);
@@ -986,13 +985,12 @@
     const subVoucher2 = document.getElementById('subVoucher2');
     applyRunawayEffect(btnRun2, subVoucher2, 'Kupon Jalan-Jalan Seharian', 2);
 
-    // Voucher 3: Pelukan Hangat (LANGSUNG KLAIM TANPA KABUR)
     document.getElementById('btnInstantClaim').addEventListener('click', () => {
       sendToWhatsApp('Kupon Pelukan Hangat & Pendengar Setia');
     });
 
     function sendToWhatsApp(voucherName) {
-      const message = encodeURIComponent(`Halo sayang! ❤️️ Aku Riska mau klaim hadiah ulang tahunku dari website: *${voucherName}*! Tolong segera direalisasikan yaa 🥰`);
+      const message = encodeURIComponent(`Halo sayang! ❤️ Aku Riska mau klaim hadiah ulang tahunku dari website: *${voucherName}*! Tolong segera direalisasikan yaa 🥰`);
       window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${message}`, '_blank');
     }
 
@@ -1019,7 +1017,6 @@
       toFireworksScreenBtn.classList.add('hidden');
       sliderThumb.style.left = '5px';
 
-      // Reset tombol kabur
       runCount1 = 0;
       runCount2 = 0;
       btnRun1.style.transform = 'translate(0px, 0px)';
