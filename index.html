@@ -491,23 +491,30 @@
     </div>
 
     <!-- ==================== SCREEN LETTER: SURAT CINTA UNTUK RISKA ==================== -->
-    <section id="screenLetter" class="screen text-center px-5">
+    <!-- ==================== SCREEN LETTER: SURAT CINTA UNTUK RISKA (SCROLLABLE & TOMBOL DI DALAM FRAME) ==================== -->
+    <section id="screenLetter" class="screen flex flex-col justify-center items-center px-4 py-3 h-full">
       <div class="w-full max-w-xs flex flex-col items-center">
         
-        <div id="envelopeWrapper" class="flex flex-col items-center cursor-pointer transition-transform active:scale-95 mb-4">
+        <!-- Ikon Amplop Tertutup -->
+        <div id="envelopeWrapper" class="flex flex-col items-center cursor-pointer transition-transform active:scale-95 my-auto">
           <div class="w-20 h-20 rounded-full bg-rose-500/20 border border-pink-400/40 flex items-center justify-center text-4xl shadow-xl shadow-rose-500/30 animate-pulse">
             ✉️
           </div>
           <span class="text-sm text-pink-200 mt-3 font-semibold">Ketuk amplop untuk membaca surat</span>
         </div>
 
-        <div id="letterPaper" class="hidden w-full p-5 rounded-2xl glassmorphism border border-pink-300/40 text-left shadow-2xl">
-          <p class="font-handwriting text-2xl text-pink-300 mb-2">Untuk Riska Tersayang,</p>
-          <div id="typewriterText" class="font-typewriter text-[15px] sm:text-[16px] leading-relaxed text-pink-50 font-bold typewriter-cursor min-h-[160px]"></div>
+        <!-- Lembaran Surat (Bisa di-scroll otomatis jika teks panjang, tidak mendorong tombol) -->
+        <div id="letterPaper" class="hidden w-full max-h-[62vh] overflow-y-auto p-4 rounded-2xl glassmorphism border border-pink-300/40 text-left shadow-2xl custom-scrollbar">
+          <p class="font-handwriting text-2xl text-pink-300 mb-2">Untuk Riska tersayang,</p>
+          
+          <!-- Teks Surat Panjang -->
+          <div id="typewriterText" class="font-typewriter text-[13.5px] leading-relaxed text-pink-50 font-bold typewriter-cursor min-h-[140px]"></div>
+          
           <p class="text-right font-handwriting text-2xl text-pink-300 mt-3 font-bold">Selamat bertumbuh</p>
         </div>
 
-        <button id="toFireworksScreenBtn" class="hidden mt-5 w-full py-3.5 rounded-full text-xs font-bold tracking-widest uppercase text-amber-200 border border-amber-300/40 glassmorphism active:scale-95 transition-all shadow-lg">
+        <!-- Tombol Lanjut ke Kembang Api (Pasti Masuk Frame) -->
+        <button id="toFireworksScreenBtn" class="hidden mt-3 w-full py-3 rounded-full text-xs font-bold tracking-widest uppercase text-amber-200 border border-amber-300/50 glassmorphism active:scale-95 transition-all shadow-xl">
           Lihat Kembang Api & Hadiah &nbsp;✨
         </button>
 
@@ -919,16 +926,20 @@
       typewriterText.textContent = '';
       
       let charIdx = 0;
-      const typeSpeed = 38;
+      const typeSpeed = 35; // Kecepatan ketik per huruf (ms)
 
       function typeChar() {
         if (charIdx < LOVE_LETTER_TEXT.length) {
           typewriterText.textContent += LOVE_LETTER_TEXT.charAt(charIdx);
           charIdx++;
+          // Otomatis scroll ke bawah saat teks mengetik panjang
+          letterPaper.scrollTop = letterPaper.scrollHeight;
           setTimeout(typeChar, typeSpeed);
         } else {
           typewriterText.classList.remove('typewriter-cursor');
           toFireworksScreenBtn.classList.remove('hidden');
+          // Pastikan tombol terlihat jelas
+          letterPaper.scrollTop = letterPaper.scrollHeight;
         }
       }
       typeChar();
