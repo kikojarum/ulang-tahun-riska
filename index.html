@@ -15,6 +15,7 @@
     * {
       -webkit-tap-highlight-color: transparent;
       user-select: none;
+      box-sizing: border-box;
     }
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -22,6 +23,8 @@
       color: #fff;
       overflow: hidden;
       touch-action: manipulation;
+      height: 100vh;
+      height: 100dvh;
     }
     .font-serif-title {
       font-family: 'Playfair Display', Georgia, serif;
@@ -221,11 +224,11 @@
       50% { opacity: 0; }
     }
 
-    /* Animasi Lari Jauh Tombol Voucher */
+    /* Tombol Lari */
     .btn-runaway {
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 50;
       position: relative;
-      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 40;
     }
   </style>
 </head>
@@ -234,7 +237,7 @@
   <canvas id="ambientCanvas"></canvas>
   <canvas id="fireworksCanvas"></canvas>
 
-  <!-- BACKGROUND MUSIC (Sesuai nama file di repo GitHub Anda) -->
+  <!-- BACKGROUND MUSIC (ktaton-cerita.mpeg) -->
   <audio id="bgMusic" loop preload="auto">
     <source src="ktaton-cerita.mpeg" type="audio/mpeg">
     <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_c660c6d7d4.mp3?filename=romantic-love-story-piano-111164.mp3" type="audio/mpeg">
@@ -246,7 +249,7 @@
   </audio>
 
   <!-- Tombol Musik Mengambang -->
-  <button id="musicBtn" class="fixed top-5 right-5 z-50 p-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white/80 hidden opacity-0 transition-opacity duration-300">
+  <button id="musicBtn" class="fixed top-5 right-5 z-40 p-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white/80 hidden opacity-0 transition-opacity duration-300">
     <svg id="musicIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
     </svg>
@@ -400,66 +403,67 @@
       </div>
     </section>
 
-    <!-- ==================== SCREEN 4: MEMORIES GALLERY (COMPACT LAYOUT) ==================== -->
-    <section id="screen4" class="screen flex flex-col justify-between px-4 py-4 h-full">
-      <div class="text-center">
+    <!-- ==================== SCREEN 4: MEMORIES GALLERY (TOMBOL DINAIKKAN & BEBAS TERTUTUP) ==================== -->
+    <section id="screen4" class="screen flex flex-col justify-start pt-6 pb-4 px-4 h-full">
+      
+      <!-- Judul Bagian Atas -->
+      <div class="text-center mb-2.5">
         <h3 class="text-xs uppercase tracking-widest text-pink-300 font-bold mb-0.5">Sweet Moments</h3>
         <p class="text-xs text-white/60">Sentuh salah satu foto untuk melihat ceritanya</p>
       </div>
 
-      <!-- 6 Photo Grid - Ukuran Proporsional -->
-      <div class="grid grid-cols-2 gap-2.5 w-full max-w-xs mx-auto my-auto">
-        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="0">
+      <!-- 6 Photo Grid: Tinggi Dikunci (h-24) Supaya Sangat Ringkas & Muat Di Layar HP -->
+      <div class="grid grid-cols-2 gap-2.5 w-full max-w-xs mx-auto mb-4">
+        <div class="gallery-item relative h-24 rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="0">
           <img src="gambar_1.jpeg" alt="Senyummu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-1.5">
             <span class="text-xs font-semibold text-pink-100">Senyummu</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="1">
+        <div class="gallery-item relative h-24 rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="1">
           <img src="gambar_2.jpeg" alt="Perhatianmu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-1.5">
             <span class="text-xs font-semibold text-pink-100">Perhatianmu</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="2">
+        <div class="gallery-item relative h-24 rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="2">
           <img src="gambar_3.jpeg" alt="Nyaman" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-1.5">
             <span class="text-xs font-semibold text-pink-100">Nyaman</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="3">
+        <div class="gallery-item relative h-24 rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="3">
           <img src="gambar_4.jpeg" alt="Tawamu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-1.5">
             <span class="text-xs font-semibold text-pink-100">Tawamu</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="4">
+        <div class="gallery-item relative h-24 rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="4">
           <img src="gambar_5.jpeg" alt="Kamu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-1.5">
             <span class="text-xs font-semibold text-pink-100">Kamu</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="5">
+        <div class="gallery-item relative h-24 rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="5">
           <img src="gambar_6.jpeg" alt="Terima Kasih" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-1.5">
             <span class="text-xs font-semibold text-pink-100">Terima Kasih</span>
           </div>
         </div>
       </div>
 
-      <!-- Tombol Masuk Frame & Sangat Nyaman Ditekan -->
-      <div class="w-full max-w-xs mx-auto pb-2">
-        <button id="toLetterBtn" class="w-full py-3.5 rounded-full text-sm font-bold tracking-widest uppercase text-amber-200 border border-amber-300/40 glassmorphism active:scale-95 transition-all shadow-lg flex items-center justify-center gap-2">
+      <!-- Tombol Buka Surat Khusus: Ditaruh Tepat Di Bawah Foto, Dijamin Masuk Frame & Mudah Diklik -->
+      <div class="w-full max-w-xs mx-auto mt-1">
+        <button id="toLetterBtn" class="w-full py-3.5 rounded-full text-sm font-bold tracking-widest uppercase text-amber-200 border border-amber-300/50 glassmorphism active:scale-95 transition-all shadow-xl flex items-center justify-center gap-2">
           <span>Buka Surat Khusus</span>
           <span>💌</span>
         </button>
       </div>
     </section>
 
-    <!-- ==================== PHOTO MODAL VIEW (CLOSE DI KIRI ATAS AGAR BEBAS) ==================== -->
+    <!-- ==================== PHOTO MODAL VIEW ==================== -->
     <div id="photoModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col justify-between p-6 opacity-0 pointer-events-none transition-opacity duration-300">
       
-      <!-- Baris Atas: Tombol Close Diletakkan di Kiri Atas yang Bebas Gangguan -->
       <div class="w-full flex items-center justify-between pt-1">
         <button id="closeModalBtn" class="p-3 rounded-full bg-white/15 hover:bg-white/25 text-white shadow-lg active:scale-90 transition-transform">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -472,7 +476,6 @@
           <img id="modalImg" src="" alt="Moment" class="w-full h-full object-cover" />
         </div>
         <h4 id="modalTitle" class="text-2xl font-serif-title font-bold text-pink-200 mb-2"></h4>
-        <!-- Teks Deskripsi Foto Lebih Besar & Jelas -->
         <p id="modalDesc" class="text-sm leading-relaxed text-pink-50 font-medium px-2"></p>
       </div>
 
@@ -498,7 +501,6 @@
           <span class="text-sm text-pink-200 mt-3 font-semibold">Ketuk amplop untuk membaca surat</span>
         </div>
 
-        <!-- Lembaran Surat: Font Besar (15px-16px) & Jelas untuk Mata Minus -->
         <div id="letterPaper" class="hidden w-full p-5 rounded-2xl glassmorphism border border-pink-300/40 text-left shadow-2xl">
           <p class="font-handwriting text-2xl text-pink-300 mb-2">Untuk Riska tersayang,</p>
           <div id="typewriterText" class="font-typewriter text-[15px] sm:text-[16px] leading-relaxed text-pink-50 font-bold typewriter-cursor min-h-[160px]"></div>
@@ -512,7 +514,7 @@
       </div>
     </section>
 
-    <!-- ==================== SCREEN 5: FIREWORKS + KUPON HADIAH SERAGAM ==================== -->
+    <!-- ==================== SCREEN 5: FIREWORKS + KUPON HADIAH (ANTI-TERPOTONG) ==================== -->
     <section id="screen5" class="screen flex flex-col justify-between px-5 py-5 text-center">
       
       <!-- Top Title: RISKA -->
@@ -523,11 +525,11 @@
         </h1>
       </div>
 
-      <!-- KUPON HADIAH: TAMPILAN DIBUAT SERAGAM PERSIS (TRAP TERSEMBUNYI) -->
+      <!-- KUPON CONTAINER -->
       <div class="w-full max-w-xs mx-auto my-auto space-y-2.5 relative">
         <h4 class="text-sm font-bold uppercase tracking-wider text-pink-200 mb-1">Pilih Kado & Kuponmu Hari Ini 🎟️</h4>
         
-        <!-- Voucher 1: Traktir Makanan (Lari Jauh 5x) -->
+        <!-- Voucher 1: Traktir Makanan (Lari Jauh Bebas) -->
         <div class="relative p-3.5 rounded-xl bg-white/10 border border-pink-400/25 backdrop-blur-md flex items-center justify-between text-left shadow">
           <div class="pr-2">
             <p class="text-sm font-bold text-pink-100">🍕 Traktir Makanan Bebas Pilih</p>
@@ -538,7 +540,7 @@
           </button>
         </div>
 
-        <!-- Voucher 2: Jalan-Jalan Seharian (Lari Jauh 5x) -->
+        <!-- Voucher 2: Jalan-Jalan Seharian (Lari Jauh Bebas) -->
         <div class="relative p-3.5 rounded-xl bg-white/10 border border-pink-400/25 backdrop-blur-md flex items-center justify-between text-left shadow">
           <div class="pr-2">
             <p class="text-sm font-bold text-pink-100">🚗 Jalan-Jalan Seharian</p>
@@ -549,7 +551,7 @@
           </button>
         </div>
 
-        <!-- Voucher 3: Pelukan Hangat & Pendengar Setia (TAMPILAN SAMA PERSIS, TAPI LANGSUNG KLAIM) -->
+        <!-- Voucher 3: Pelukan Hangat & Pendengar Setia (LANGSUNG KLAIM) -->
         <div class="relative p-3.5 rounded-xl bg-white/10 border border-pink-400/25 backdrop-blur-md flex items-center justify-between text-left shadow">
           <div class="pr-2">
             <p class="text-sm font-bold text-pink-100">🫂 Pelukan Hangat & Pendengar Setia</p>
@@ -588,7 +590,7 @@
     const LOVE_LETTER_TEXT = "Selamat ulang tahun ya, Riska. Terima kasih sudah hadir dan lahir ke dunia ini. Terima kasih untuk setiap tawa, cerita, dan kebaikan yang selalu kamu bawa. Semoga di usiamu yang baru ini, setiap impian dan doamu satu per satu terwujud, dan langkahmu selalu dipenuhi kemudahan serta kebahagiaan.";
 
     /* ============================================================
-       DATA GALERI FOTO (SESUAI REPO GITHUB)
+       DATA GALERI FOTO (SESUAI REPO GITHUB ANDA)
        ============================================================ */
     const galleryData = [
       {
@@ -848,7 +850,7 @@
     window.addEventListener('touchend', onDragEnd);
 
     /* ============================================================
-       SCREEN 4: GALLERY & MODAL (SINKRON TOMBOL CLOSE & MUSIC)
+       SCREEN 4: GALLERY & MODAL
        ============================================================ */
     const photoModal = document.getElementById('photoModal');
     const modalImg = document.getElementById('modalImg');
@@ -877,13 +879,11 @@
     function openModal(index) {
       updateModalContent(index);
       photoModal.classList.remove('pointer-events-none', 'opacity-0');
-      // Sembunyikan ikon musik agar tidak menutupi atau mengganggu
       musicBtn.classList.add('opacity-0', 'pointer-events-none');
     }
 
     function closeModal() {
       photoModal.classList.add('opacity-0', 'pointer-events-none');
-      // Tampilkan kembali tombol musik
       musicBtn.classList.remove('opacity-0', 'pointer-events-none');
     }
 
@@ -939,7 +939,7 @@
     });
 
     /* ============================================================
-       LOGIKA KUPON: LARI JAUH KELUAR AREA & KLAIM WHATSAPP
+       LOGIKA KUPON: LARI KE AREA AMAN & SELALU TERLIHAT
        ============================================================ */
     let runCount1 = 0;
     let runCount2 = 0;
@@ -953,6 +953,15 @@
       "Sekali lagi deh! 🤭"
     ];
 
+    // Posisi lompat yang dirancang selalu aman di atas layar (tidak tertimpa voucher)
+    const escapePositions = [
+      { x: -70, y: -45 },
+      { x: 35, y: -75 },
+      { x: -110, y: -30 },
+      { x: -50, y: -65 },
+      { x: 20, y: -50 }
+    ];
+
     function applyRunawayEffect(btnElement, subTextElement, voucherName, counterKey) {
       function moveButton(e) {
         if (e) e.preventDefault();
@@ -960,11 +969,10 @@
         let currentCount = (counterKey === 1) ? runCount1 : runCount2;
 
         if (currentCount < maxEscapes) {
-          // Lari jauh ke area layar bebas (hingga 140px horizontal dan 110px vertikal)
-          const randomX = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 60 + 75);
-          const randomY = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 50 + 55);
+          const pos = escapePositions[currentCount];
 
-          btnElement.style.transform = `translate(${randomX}px, ${randomY}px) scale(0.92)`;
+          btnElement.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(0.95)`;
+          btnElement.style.zIndex = '999'; // Pastikan selalu di atas segalanya
           btnElement.textContent = "Kabur! 💨";
 
           subTextElement.textContent = playfulTeases[currentCount];
@@ -977,7 +985,7 @@
             setTimeout(() => {
               btnElement.style.transform = 'translate(0px, 0px) scale(1)';
               btnElement.textContent = 'Klaim Sekarang 🎉';
-              btnElement.className = 'px-3.5 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-xs font-bold text-white shadow animate-bounce whitespace-nowrap z-40';
+              btnElement.className = 'btn-runaway px-3.5 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-xs font-bold text-white shadow animate-bounce whitespace-nowrap z-50';
               subTextElement.textContent = 'Yaudah deh, selamat kamu berhasil dapat! 🥳';
               subTextElement.className = 'text-xs text-green-300 font-bold';
             }, 300);
@@ -1000,7 +1008,7 @@
     const subVoucher2 = document.getElementById('subVoucher2');
     applyRunawayEffect(btnRun2, subVoucher2, 'Kupon Jalan-Jalan Seharian', 2);
 
-    // Voucher 3 (Pelukan): Tampilan sama persis, langsung bisa diklaim
+    // Voucher 3: Pelukan Hangat (Langsung Klaim)
     document.getElementById('btnInstantClaim').addEventListener('click', () => {
       sendToWhatsApp('Kupon Pelukan Hangat & Pendengar Setia');
     });
@@ -1036,12 +1044,14 @@
       runCount1 = 0;
       runCount2 = 0;
       btnRun1.style.transform = 'translate(0px, 0px)';
+      btnRun1.style.zIndex = '50';
       btnRun1.textContent = 'Klaim';
       btnRun1.className = 'btn-runaway px-3.5 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-xs font-bold text-white shadow whitespace-nowrap';
       subVoucher1.textContent = 'Pilih makanan apa aja hari ini, aku bayarin!';
       subVoucher1.className = 'text-xs text-white/70 font-medium';
 
       btnRun2.style.transform = 'translate(0px, 0px)';
+      btnRun2.style.zIndex = '50';
       btnRun2.textContent = 'Klaim';
       btnRun2.className = 'btn-runaway px-3.5 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-xs font-bold text-white shadow whitespace-nowrap';
       subVoucher2.textContent = 'Bebas tentukan rute yang kamu mau.';
