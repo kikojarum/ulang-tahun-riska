@@ -9,7 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Great+Vibes&family=Courier+Prime&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Great+Vibes&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -47,7 +47,6 @@
       justify-content: center;
       padding: 1.25rem;
       z-index: 10;
-      overflow-y: auto;
     }
     .screen.active {
       opacity: 1;
@@ -70,7 +69,7 @@
     .candle {
       position: relative;
       width: 14px;
-      height: 52px;
+      height: 50px;
       background: linear-gradient(to right, #ffd1dc, #fff0f5, #ffb6c1);
       border-radius: 6px 6px 3px 3px;
       box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
@@ -131,8 +130,8 @@
     /* Cake */
     .cake-base {
       position: relative;
-      width: 145px;
-      height: 46px;
+      width: 140px;
+      height: 44px;
       background: linear-gradient(180deg, #ff758c 0%, #ff5a79 100%);
       border-radius: 12px 12px 10px 10px;
       box-shadow: inset 0 5px 0 rgba(255,255,255,0.4), 0 8px 20px rgba(0,0,0,0.5);
@@ -148,7 +147,7 @@
       box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
     .cake-plate {
-      width: 185px;
+      width: 180px;
       height: 10px;
       background: #e2e8f0;
       border-radius: 50px;
@@ -158,10 +157,10 @@
 
     /* Glass Effect */
     .glassmorphism {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     /* Slider */
@@ -215,15 +214,18 @@
       content: '|';
       animation: blink 0.8s infinite;
       color: #ff758c;
+      font-weight: bold;
     }
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
 
-    /* Animasi Lari Tombol Voucher */
+    /* Animasi Lari Jauh Tombol Voucher */
     .btn-runaway {
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 40;
     }
   </style>
 </head>
@@ -232,11 +234,9 @@
   <canvas id="ambientCanvas"></canvas>
   <canvas id="fireworksCanvas"></canvas>
 
-  <!-- ==================== BACKGROUND MUSIC: KETATON CERITA ==================== -->
+  <!-- BACKGROUND MUSIC (Sesuai nama file di repo GitHub Anda) -->
   <audio id="bgMusic" loop preload="auto">
-    <!-- File audio lokal yang disimpan satu folder -->
     <source src="ktaton-cerita.mpeg" type="audio/mpeg">
-    <!-- Cadangan streaming instrumen jika file lokal belum dimasukkan -->
     <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_c660c6d7d4.mp3?filename=romantic-love-story-piano-111164.mp3" type="audio/mpeg">
   </audio>
 
@@ -246,7 +246,7 @@
   </audio>
 
   <!-- Tombol Musik Mengambang -->
-  <button id="musicBtn" class="fixed top-5 right-5 z-50 p-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white/80 hidden opacity-0 transition-opacity duration-500">
+  <button id="musicBtn" class="fixed top-5 right-5 z-50 p-2.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white/80 hidden opacity-0 transition-opacity duration-300">
     <svg id="musicIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
     </svg>
@@ -258,17 +258,17 @@
     <!-- ==================== SCREEN 1: WELCOME SCREEN ==================== -->
     <section id="screen1" class="screen active text-center px-6">
       <div class="mb-4">
-        <span class="text-4xl animate-bounce inline-block">✨</span>
+        <span class="text-5xl animate-bounce inline-block">✨</span>
       </div>
-      <h2 class="text-xl md:text-2xl text-pink-200/80 font-serif-title tracking-wider mb-2">A Little Surprise</h2>
+      <h2 class="text-2xl text-pink-200 font-serif-title tracking-wider mb-2">A Little Surprise</h2>
       <h1 class="text-4xl md:text-5xl font-serif-title font-bold bg-gradient-to-r from-amber-200 via-rose-300 to-amber-100 bg-clip-text text-transparent mb-10 drop-shadow-sm">
         Just For Riska
       </h1>
 
-      <button id="startBtn" class="group relative px-7 py-3.5 rounded-full text-sm font-medium tracking-wide uppercase text-white bg-white/10 border border-white/20 backdrop-blur-md overflow-hidden transition-all duration-300 active:scale-95 hover:bg-white/20 hover:border-pink-300/50">
+      <button id="startBtn" class="group relative px-8 py-3.5 rounded-full text-base font-semibold tracking-wide uppercase text-white bg-white/10 border border-white/20 backdrop-blur-md overflow-hidden transition-all duration-300 active:scale-95 hover:bg-white/20 hover:border-pink-300/50">
         <span class="relative z-10 flex items-center gap-2">
           Open Your Surprise
-          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </span>
       </button>
     </section>
@@ -277,12 +277,12 @@
     <section id="screen2" class="screen text-center px-6">
       <div class="w-full flex flex-col items-center max-w-xs">
         
-        <p id="candleTitle" class="text-sm font-medium text-pink-200/80 tracking-wide mb-6">
+        <p id="candleTitle" class="text-base font-medium text-pink-100 tracking-wide mb-4">
           Buat satu permohonan dalam hati, lalu tiup lilinnya ya ✨
         </p>
 
         <!-- Birthday Cake Visual -->
-        <div class="relative flex flex-col items-center my-6">
+        <div class="relative flex flex-col items-center my-4">
           <div class="candle">
             <div class="wick"></div>
             <div id="candleFlame" class="flame"></div>
@@ -290,43 +290,43 @@
           </div>
           <div class="cake-base flex items-center justify-center">
             <div class="cake-cream"></div>
-            <span class="text-xs font-serif-title text-white/90 tracking-widest uppercase mt-2">Make a Wish</span>
+            <span class="text-xs font-serif-title text-white tracking-widest uppercase mt-2 font-semibold">Make a Wish</span>
           </div>
           <div class="cake-plate"></div>
         </div>
 
-        <div id="blowStatus" class="h-6 mb-3 text-xs tracking-wider text-pink-300 font-semibold opacity-0 transition-opacity">
+        <div id="blowStatus" class="h-6 mb-2 text-sm tracking-wider text-pink-300 font-bold opacity-0 transition-opacity">
           Meniup lilin... tahan terus! 💨
         </div>
 
         <!-- Tombol Tiup Lilin -->
         <div id="blowButtonContainer" class="w-full flex flex-col items-center">
-          <button id="blowCandleBtn" class="relative w-full py-3.5 rounded-full bg-gradient-to-r from-pink-500/80 to-rose-600/80 text-white font-medium text-sm border border-pink-400/40 shadow-lg shadow-pink-500/25 active:scale-95 transition-all overflow-hidden flex items-center justify-center gap-2">
-            <div id="blowProgressFill" class="absolute left-0 top-0 bottom-0 bg-white/30 w-0 transition-all duration-75"></div>
+          <button id="blowCandleBtn" class="relative w-full py-4 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-semibold text-base border border-pink-400/50 shadow-lg shadow-pink-500/25 active:scale-95 transition-all overflow-hidden flex items-center justify-center gap-2">
+            <div id="blowProgressFill" class="absolute left-0 top-0 bottom-0 bg-white/35 w-0 transition-all duration-75"></div>
             <span class="relative z-10 flex items-center gap-2">
               <span>Tiup Lilin</span>
-              <span class="text-lg">🎂</span>
+              <span class="text-xl">🎂</span>
             </span>
           </button>
-          <span class="text-[11px] text-white/50 mt-2.5">Tekan & tahan tombol untuk meniup</span>
+          <span class="text-xs text-white/70 mt-2 font-medium">Tekan & tahan tombol untuk meniup</span>
         </div>
 
         <!-- Pesan Doa + Voice Note Player -->
-        <div id="wishCard" class="hidden flex-col items-center mt-2 p-5 rounded-2xl glassmorphism border border-pink-400/30 text-center w-full">
-          <div class="text-2xl mb-1">🎉 🥳 ✨</div>
-          <h3 class="text-lg font-bold font-serif-title text-pink-200 mb-1">Happy Birthday, Riska!</h3>
-          <p class="text-xs leading-relaxed text-pink-100/90 mb-3">
+        <div id="wishCard" class="hidden flex-col items-center mt-1 p-5 rounded-2xl glassmorphism border border-pink-400/40 text-center w-full shadow-xl">
+          <div class="text-3xl mb-1">🎉 🥳 ✨</div>
+          <h3 class="text-xl font-bold font-serif-title text-pink-200 mb-1.5">Happy Birthday, Riska!</h3>
+          <p class="text-sm leading-relaxed text-pink-100 font-medium mb-3">
             Semoga setiap harapan baikmu dikabulkan, langkahmu selalu dimudahkan, dan harimu dipenuhi kebahagiaan serta senyuman manis. 🤍
           </p>
 
           <!-- Voice Note Pribadi -->
-          <div class="w-full p-2.5 mb-4 rounded-xl bg-pink-950/40 border border-pink-400/20 flex items-center justify-between gap-3">
-            <button id="vnPlayBtn" class="w-9 h-9 rounded-full bg-pink-500 text-white flex items-center justify-center shadow-md active:scale-90 transition-transform">
+          <div class="w-full p-3 mb-3.5 rounded-xl bg-pink-950/50 border border-pink-400/30 flex items-center justify-between gap-3">
+            <button id="vnPlayBtn" class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center text-sm shadow-md active:scale-90 transition-transform">
               <span id="vnIcon">▶</span>
             </button>
             <div class="flex-1 text-left">
-              <p class="text-[11px] font-semibold text-pink-200">Voice Note Dari Aku 🎙️</p>
-              <p id="vnTimer" class="text-[10px] text-pink-300/70">Dengarkan pesan suara ini</p>
+              <p class="text-xs font-bold text-pink-200">Voice Note Dari Aku 🎙️</p>
+              <p id="vnTimer" class="text-[11px] text-pink-300 font-medium">Dengarkan pesan suara ini</p>
             </div>
             <div id="soundWaveBox" class="flex items-center gap-1 h-6 pr-2 sound-paused">
               <div class="sound-bar"></div>
@@ -337,47 +337,47 @@
             </div>
           </div>
 
-          <button id="toCounterBtn" class="px-5 py-2.5 rounded-full bg-white/20 hover:bg-white/30 text-xs font-semibold tracking-wider text-white border border-white/30 flex items-center gap-1.5 transition-all">
+          <button id="toCounterBtn" class="px-6 py-2.5 rounded-full bg-white/20 hover:bg-white/30 text-sm font-semibold tracking-wider text-white border border-white/30 flex items-center gap-2 transition-all">
             <span>Perjalanan Hidupmu</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </button>
         </div>
 
       </div>
     </section>
 
-    <!-- ==================== SCREEN COUNTER: TIME TRACKER (01 OKTOBER 2005) ==================== -->
+    <!-- ==================== SCREEN COUNTER: TIME TRACKER ==================== -->
     <section id="screenCounter" class="screen text-center px-6">
       <div class="w-full max-w-xs flex flex-col items-center">
-        <span class="text-3xl mb-2">⏳</span>
-        <h2 class="text-2xl font-serif-title font-semibold text-pink-200 mb-1">Kisah Berharga Riska</h2>
-        <p class="text-xs text-white/60 mb-6">Waktu sejak hari kelahiranmu (01 Oktober 2005):</p>
+        <span class="text-4xl mb-2">⏳</span>
+        <h2 class="text-2xl font-serif-title font-bold text-pink-200 mb-1">Kisah Berharga Riska</h2>
+        <p class="text-xs text-white/70 mb-5 font-medium">Waktu sejak hari kelahiranmu (01 Oktober 2005):</p>
 
         <!-- Counter Grid -->
-        <div class="grid grid-cols-2 gap-3 w-full mb-6">
+        <div class="grid grid-cols-2 gap-3 w-full mb-5">
           <div class="glassmorphism p-3 rounded-2xl flex flex-col items-center">
             <span id="daysCount" class="text-2xl font-bold font-serif-title text-amber-200">0</span>
-            <span class="text-[10px] uppercase tracking-wider text-pink-200/70">Hari</span>
+            <span class="text-[11px] uppercase tracking-wider text-pink-200/80 font-semibold">Hari</span>
           </div>
           <div class="glassmorphism p-3 rounded-2xl flex flex-col items-center">
             <span id="hoursCount" class="text-2xl font-bold font-serif-title text-rose-300">0</span>
-            <span class="text-[10px] uppercase tracking-wider text-pink-200/70">Jam</span>
+            <span class="text-[11px] uppercase tracking-wider text-pink-200/80 font-semibold">Jam</span>
           </div>
           <div class="glassmorphism p-3 rounded-2xl flex flex-col items-center">
             <span id="minutesCount" class="text-2xl font-bold font-serif-title text-pink-300">0</span>
-            <span class="text-[10px] uppercase tracking-wider text-pink-200/70">Menit</span>
+            <span class="text-[11px] uppercase tracking-wider text-pink-200/80 font-semibold">Menit</span>
           </div>
           <div class="glassmorphism p-3 rounded-2xl flex flex-col items-center">
             <span id="secondsCount" class="text-2xl font-bold font-serif-title text-amber-100">0</span>
-            <span class="text-[10px] uppercase tracking-wider text-pink-200/70">Detik</span>
+            <span class="text-[11px] uppercase tracking-wider text-pink-200/80 font-semibold">Detik</span>
           </div>
         </div>
 
-        <p class="text-xs text-pink-100/80 italic mb-8 px-2">
+        <p class="text-sm text-pink-100 italic mb-7 px-2 font-medium leading-relaxed">
           "Terima kasih sudah tumbuh menjadi pribadi yang seindah dan sekuat ini hingga hari ini."
         </p>
 
-        <button id="toSlideUnlockBtn" class="w-full py-3.5 rounded-full bg-gradient-to-r from-pink-500/80 to-rose-600/80 text-white font-medium text-xs tracking-wider uppercase border border-pink-400/40 shadow-lg active:scale-95 transition-all">
+        <button id="toSlideUnlockBtn" class="w-full py-3.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white font-semibold text-xs tracking-wider uppercase border border-pink-400/40 shadow-lg active:scale-95 transition-all">
           Buka Kado Kenangan &nbsp;🎁
         </button>
       </div>
@@ -400,166 +400,175 @@
       </div>
     </section>
 
-    <!-- ==================== SCREEN 4: MEMORIES GALLERY ==================== -->
-    <section id="screen4" class="screen flex flex-col justify-between px-5 py-6">
-      <div class="text-center pt-1">
-        <h3 class="text-xs uppercase tracking-widest text-pink-300 font-semibold mb-0.5">Sweet Moments</h3>
-        <p class="text-xs text-white/50">Sentuh salah satu foto untuk melihat ceritanya</p>
+    <!-- ==================== SCREEN 4: MEMORIES GALLERY (COMPACT LAYOUT) ==================== -->
+    <section id="screen4" class="screen flex flex-col justify-between px-4 py-4 h-full">
+      <div class="text-center">
+        <h3 class="text-xs uppercase tracking-widest text-pink-300 font-bold mb-0.5">Sweet Moments</h3>
+        <p class="text-xs text-white/60">Sentuh salah satu foto untuk melihat ceritanya</p>
       </div>
 
-      <!-- 6 Photo Grid -->
-      <div class="grid grid-cols-2 gap-3 w-full my-auto max-w-sm">
-        <div class="gallery-item relative aspect-square rounded-xl overflow-hidden cursor-pointer border border-white/10 group active:scale-95 transition-transform" data-index="0">
+      <!-- 6 Photo Grid - Ukuran Proporsional -->
+      <div class="grid grid-cols-2 gap-2.5 w-full max-w-xs mx-auto my-auto">
+        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="0">
           <img src="gambar_1.jpeg" alt="Senyummu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5">
-            <span class="text-xs font-medium text-pink-100">Senyummu</span>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+            <span class="text-xs font-semibold text-pink-100">Senyummu</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-square rounded-xl overflow-hidden cursor-pointer border border-white/10 group active:scale-95 transition-transform" data-index="1">
+        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="1">
           <img src="gambar_2.jpeg" alt="Perhatianmu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5">
-            <span class="text-xs font-medium text-pink-100">Perhatianmu</span>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+            <span class="text-xs font-semibold text-pink-100">Perhatianmu</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-square rounded-xl overflow-hidden cursor-pointer border border-white/10 group active:scale-95 transition-transform" data-index="2">
+        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="2">
           <img src="gambar_3.jpeg" alt="Nyaman" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5">
-            <span class="text-xs font-medium text-pink-100">Nyaman</span>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+            <span class="text-xs font-semibold text-pink-100">Nyaman</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-square rounded-xl overflow-hidden cursor-pointer border border-white/10 group active:scale-95 transition-transform" data-index="3">
+        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="3">
           <img src="gambar_4.jpeg" alt="Tawamu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5">
-            <span class="text-xs font-medium text-pink-100">Tawamu</span>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+            <span class="text-xs font-semibold text-pink-100">Tawamu</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-square rounded-xl overflow-hidden cursor-pointer border border-white/10 group active:scale-95 transition-transform" data-index="4">
+        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="4">
           <img src="gambar_5.jpeg" alt="Kamu" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5">
-            <span class="text-xs font-medium text-pink-100">Kamu</span>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+            <span class="text-xs font-semibold text-pink-100">Kamu</span>
           </div>
         </div>
-        <div class="gallery-item relative aspect-square rounded-xl overflow-hidden cursor-pointer border border-white/10 group active:scale-95 transition-transform" data-index="5">
+        <div class="gallery-item relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-white/15 group active:scale-95 transition-transform" data-index="5">
           <img src="gambar_6.jpeg" alt="Terima Kasih" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5">
-            <span class="text-xs font-medium text-pink-100">Terima Kasih</span>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2">
+            <span class="text-xs font-semibold text-pink-100">Terima Kasih</span>
           </div>
         </div>
       </div>
 
-      <button id="toLetterBtn" class="w-full max-w-xs mx-auto py-3.5 rounded-full text-xs font-bold tracking-widest uppercase text-amber-200 border border-amber-300/30 glassmorphism active:scale-95 transition-all">
-        Buka Surat Khusus &nbsp;💌
-      </button>
+      <!-- Tombol Masuk Frame & Sangat Nyaman Ditekan -->
+      <div class="w-full max-w-xs mx-auto pb-2">
+        <button id="toLetterBtn" class="w-full py-3.5 rounded-full text-sm font-bold tracking-widest uppercase text-amber-200 border border-amber-300/40 glassmorphism active:scale-95 transition-all shadow-lg flex items-center justify-center gap-2">
+          <span>Buka Surat Khusus</span>
+          <span>💌</span>
+        </button>
+      </div>
     </section>
 
-    <!-- PHOTO MODAL VIEW -->
-    <div id="photoModal" class="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl flex flex-col justify-between p-6 opacity-0 pointer-events-none transition-opacity duration-300">
-      <div class="flex justify-end pt-2">
-        <button id="closeModalBtn" class="p-2 rounded-full bg-white/10 text-white/80 hover:bg-white/20">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    <!-- ==================== PHOTO MODAL VIEW (CLOSE DI KIRI ATAS AGAR BEBAS) ==================== -->
+    <div id="photoModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col justify-between p-6 opacity-0 pointer-events-none transition-opacity duration-300">
+      
+      <!-- Baris Atas: Tombol Close Diletakkan di Kiri Atas yang Bebas Gangguan -->
+      <div class="w-full flex items-center justify-between pt-1">
+        <button id="closeModalBtn" class="p-3 rounded-full bg-white/15 hover:bg-white/25 text-white shadow-lg active:scale-90 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
+        <span class="text-xs text-white/50 tracking-wider font-semibold">Ketuk tanda silang untuk kembali</span>
       </div>
 
       <div class="my-auto flex flex-col items-center text-center max-w-xs mx-auto w-full">
-        <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-5 border border-white/10 shadow-2xl relative">
+        <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden mb-4 border border-white/15 shadow-2xl relative">
           <img id="modalImg" src="" alt="Moment" class="w-full h-full object-cover" />
         </div>
-        <h4 id="modalTitle" class="text-xl font-serif-title font-bold text-pink-200 mb-2"></h4>
-        <p id="modalDesc" class="text-xs leading-relaxed text-white/80 font-light px-2"></p>
+        <h4 id="modalTitle" class="text-2xl font-serif-title font-bold text-pink-200 mb-2"></h4>
+        <!-- Teks Deskripsi Foto Lebih Besar & Jelas -->
+        <p id="modalDesc" class="text-sm leading-relaxed text-pink-50 font-medium px-2"></p>
       </div>
 
       <div class="flex items-center justify-between max-w-xs mx-auto w-full pb-4">
-        <button id="prevPhotoBtn" class="p-2 text-white/60 hover:text-white">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        <button id="prevPhotoBtn" class="p-2.5 text-white/70 hover:text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
         </button>
-        <div id="modalDots" class="flex gap-1.5"></div>
-        <button id="nextPhotoBtn" class="p-2 text-white/60 hover:text-white">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div id="modalDots" class="flex gap-2"></div>
+        <button id="nextPhotoBtn" class="p-2.5 text-white/70 hover:text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
 
     <!-- ==================== SCREEN LETTER: SURAT CINTA UNTUK RISKA ==================== -->
-    <section id="screenLetter" class="screen text-center px-6">
+    <section id="screenLetter" class="screen text-center px-5">
       <div class="w-full max-w-xs flex flex-col items-center">
         
         <div id="envelopeWrapper" class="flex flex-col items-center cursor-pointer transition-transform active:scale-95 mb-4">
           <div class="w-20 h-20 rounded-full bg-rose-500/20 border border-pink-400/40 flex items-center justify-center text-4xl shadow-xl shadow-rose-500/30 animate-pulse">
             ✉️
           </div>
-          <span class="text-xs text-pink-200 mt-3 font-medium">Ketuk amplop untuk membaca surat</span>
+          <span class="text-sm text-pink-200 mt-3 font-semibold">Ketuk amplop untuk membaca surat</span>
         </div>
 
-        <div id="letterPaper" class="hidden w-full p-5 rounded-2xl glassmorphism border border-pink-300/30 text-left">
-          <p class="text-xs font-handwriting text-2xl text-pink-300 mb-2">Untuk Riska yang tersayang,</p>
-          <div id="typewriterText" class="font-typewriter text-[12px] leading-relaxed text-pink-100 typewriter-cursor min-h-[140px]"></div>
-          <p class="text-right text-[11px] font-handwriting text-xl text-pink-300 mt-3">Selalu menyayangimu ❤️</p>
+        <!-- Lembaran Surat: Font Besar (15px-16px) & Jelas untuk Mata Minus -->
+        <div id="letterPaper" class="hidden w-full p-5 rounded-2xl glassmorphism border border-pink-300/40 text-left shadow-2xl">
+          <p class="font-handwriting text-2xl text-pink-300 mb-2">Untuk Riska tersayang,</p>
+          <div id="typewriterText" class="font-typewriter text-[15px] sm:text-[16px] leading-relaxed text-pink-50 font-bold typewriter-cursor min-h-[160px]"></div>
+          <p class="text-right font-handwriting text-2xl text-pink-300 mt-3 font-bold">Selalu menyayangimu ❤️</p>
         </div>
 
-        <button id="toFireworksScreenBtn" class="hidden mt-6 w-full py-3.5 rounded-full text-xs font-bold tracking-widest uppercase text-amber-200 border border-amber-300/30 glassmorphism active:scale-95 transition-all">
+        <button id="toFireworksScreenBtn" class="hidden mt-5 w-full py-3.5 rounded-full text-xs font-bold tracking-widest uppercase text-amber-200 border border-amber-300/40 glassmorphism active:scale-95 transition-all shadow-lg">
           Lihat Kembang Api & Hadiah &nbsp;✨
         </button>
 
       </div>
     </section>
 
-    <!-- ==================== SCREEN 5: FIREWORKS + KUPON HADIAH USIL ==================== -->
-    <section id="screen5" class="screen flex flex-col justify-between px-5 py-6 text-center">
+    <!-- ==================== SCREEN 5: FIREWORKS + KUPON HADIAH SERAGAM ==================== -->
+    <section id="screen5" class="screen flex flex-col justify-between px-5 py-5 text-center">
       
       <!-- Top Title: RISKA -->
-      <div class="pt-2">
+      <div class="pt-1">
         <p class="font-handwriting text-3xl text-pink-300 drop-shadow-md mb-0.5">Happy Birthday</p>
         <h1 class="font-serif-title text-4xl font-bold tracking-widest text-amber-200 drop-shadow-[0_0_20px_rgba(251,191,36,0.6)]">
           RISKA
         </h1>
       </div>
 
-      <!-- KUPON HADIAH -->
-      <div class="w-full max-w-xs mx-auto my-auto space-y-3 relative">
-        <h4 class="text-xs font-semibold uppercase tracking-wider text-pink-200 mb-2">Pilih Kado & Kuponmu Hari Ini 🎟️</h4>
+      <!-- KUPON HADIAH: TAMPILAN DIBUAT SERAGAM PERSIS (TRAP TERSEMBUNYI) -->
+      <div class="w-full max-w-xs mx-auto my-auto space-y-2.5 relative">
+        <h4 class="text-sm font-bold uppercase tracking-wider text-pink-200 mb-1">Pilih Kado & Kuponmu Hari Ini 🎟️</h4>
         
-        <!-- Voucher 1: Traktir Makanan (Lari 5x) -->
-        <div class="relative p-3 rounded-xl bg-white/5 border border-pink-400/20 backdrop-blur-md flex items-center justify-between text-left">
+        <!-- Voucher 1: Traktir Makanan (Lari Jauh 5x) -->
+        <div class="relative p-3.5 rounded-xl bg-white/10 border border-pink-400/25 backdrop-blur-md flex items-center justify-between text-left shadow">
           <div class="pr-2">
-            <p class="text-xs font-semibold text-pink-100">🍕 Traktir Makanan Bebas Pilih</p>
-            <p id="subVoucher1" class="text-[10px] text-white/60">Pilih makanan apa aja hari ini, aku bayarin!</p>
+            <p class="text-sm font-bold text-pink-100">🍕 Traktir Makanan Bebas Pilih</p>
+            <p id="subVoucher1" class="text-xs text-white/70 font-medium">Pilih makanan apa aja hari ini, aku bayarin!</p>
           </div>
-          <button id="btnRunVoucher1" class="btn-runaway px-3 py-1.5 rounded-lg bg-pink-500/80 hover:bg-pink-600 text-[10px] font-bold text-white shadow whitespace-nowrap z-30">
+          <button id="btnRunVoucher1" class="btn-runaway px-3.5 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-xs font-bold text-white shadow whitespace-nowrap">
             Klaim
           </button>
         </div>
 
-        <!-- Voucher 2: Jalan-Jalan Seharian (Lari 5x) -->
-        <div class="relative p-3 rounded-xl bg-white/5 border border-pink-400/20 backdrop-blur-md flex items-center justify-between text-left">
+        <!-- Voucher 2: Jalan-Jalan Seharian (Lari Jauh 5x) -->
+        <div class="relative p-3.5 rounded-xl bg-white/10 border border-pink-400/25 backdrop-blur-md flex items-center justify-between text-left shadow">
           <div class="pr-2">
-            <p class="text-xs font-semibold text-pink-100">🚗 Jalan-Jalan Seharian</p>
-            <p id="subVoucher2" class="text-[10px] text-white/60">Bebas tentukan rute yang kamu mau.</p>
+            <p class="text-sm font-bold text-pink-100">🚗 Jalan-Jalan Seharian</p>
+            <p id="subVoucher2" class="text-xs text-white/70 font-medium">Bebas tentukan rute yang kamu mau.</p>
           </div>
-          <button id="btnRunVoucher2" class="btn-runaway px-3 py-1.5 rounded-lg bg-pink-500/80 hover:bg-pink-600 text-[10px] font-bold text-white shadow whitespace-nowrap z-30">
+          <button id="btnRunVoucher2" class="btn-runaway px-3.5 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-xs font-bold text-white shadow whitespace-nowrap">
             Klaim
           </button>
         </div>
 
-        <!-- Voucher 3: Pelukan Hangat & Pendengar Setia (BISA LANGSUNG DIKLAIM!) -->
-        <div class="p-3 rounded-xl bg-gradient-to-r from-pink-500/20 to-rose-500/20 border border-pink-400/40 backdrop-blur-md flex items-center justify-between text-left shadow-lg shadow-pink-500/10">
+        <!-- Voucher 3: Pelukan Hangat & Pendengar Setia (TAMPILAN SAMA PERSIS, TAPI LANGSUNG KLAIM) -->
+        <div class="relative p-3.5 rounded-xl bg-white/10 border border-pink-400/25 backdrop-blur-md flex items-center justify-between text-left shadow">
           <div class="pr-2">
-            <p class="text-xs font-semibold text-pink-100">🫂 Pelukan Hangat & Pendengar Setia</p>
-            <p class="text-[10px] text-pink-200/70">Langsung siap sedia kapan pun kamu butuh! ❤️</p>
+            <p class="text-sm font-bold text-pink-100">🫂 Pelukan Hangat & Pendengar Setia</p>
+            <p class="text-xs text-white/70 font-medium">Langsung siap sedia kapan pun kamu butuh! ❤️</p>
           </div>
-          <button id="btnInstantClaim" class="px-3 py-1.5 rounded-lg bg-rose-500 hover:bg-rose-600 text-[10px] font-bold text-white shadow active:scale-90 transition-transform whitespace-nowrap">
-            Klaim Langsung ✨
+          <button id="btnInstantClaim" class="px-3.5 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-xs font-bold text-white shadow whitespace-nowrap active:scale-90 transition-transform">
+            Klaim
           </button>
         </div>
       </div>
 
       <!-- Bottom Interactive Trigger & Replay -->
-      <div class="pb-2 flex flex-col items-center gap-2">
+      <div class="pb-1 flex flex-col items-center gap-1.5">
         <button id="burstBtn" class="w-13 h-13 p-3 rounded-full bg-pink-500/80 border border-pink-300/40 flex items-center justify-center text-2xl shadow-lg shadow-pink-500/50 active:scale-90 transition-transform">
           💖
         </button>
-        <span class="text-[10px] text-pink-200/60 uppercase tracking-widest">Sentuh hati untuk pesta kembang api</span>
+        <span class="text-[11px] text-pink-200/70 uppercase tracking-widest font-semibold">Sentuh hati untuk pesta kembang api</span>
 
-        <button id="replayBtn" class="mt-1 text-xs text-white/50 hover:text-white flex items-center gap-1.5 transition-colors">
+        <button id="replayBtn" class="mt-1 text-xs text-white/60 hover:text-white flex items-center gap-1.5 transition-colors font-medium">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           Putar Ulang
         </button>
@@ -573,13 +582,13 @@
     /* ============================================================
        PENGATURAN PERSONALISASI
        ============================================================ */
-    const MY_WHATSAPP_NUMBER = "6281234567890"; // <-- Ganti dengan nomor WhatsApp kamu (format: 628xxx)
+    const MY_WHATSAPP_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp Anda
     const BIRTH_DATE = new Date(2005, 9, 1, 0, 0, 0); // 01 Oktober 2005
 
     const LOVE_LETTER_TEXT = "Selamat ulang tahun ya, Riska. Terima kasih sudah hadir dan lahir ke dunia ini. Terima kasih untuk setiap tawa, cerita, dan kebaikan yang selalu kamu bawa. Semoga di usiamu yang baru ini, setiap impian dan doamu satu per satu terwujud, dan langkahmu selalu dipenuhi kemudahan serta kebahagiaan.";
 
     /* ============================================================
-       DATA GALERI FOTO
+       DATA GALERI FOTO (SESUAI REPO GITHUB)
        ============================================================ */
     const galleryData = [
       {
@@ -630,7 +639,7 @@
     }
 
     /* ============================================================
-       AUDIO & BACKGROUND MUSIC (KETATON CERITA)
+       AUDIO & BACKGROUND MUSIC
        ============================================================ */
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicBtn');
@@ -839,7 +848,7 @@
     window.addEventListener('touchend', onDragEnd);
 
     /* ============================================================
-       SCREEN 4: GALLERY & MODAL
+       SCREEN 4: GALLERY & MODAL (SINKRON TOMBOL CLOSE & MUSIC)
        ============================================================ */
     const photoModal = document.getElementById('photoModal');
     const modalImg = document.getElementById('modalImg');
@@ -868,9 +877,14 @@
     function openModal(index) {
       updateModalContent(index);
       photoModal.classList.remove('pointer-events-none', 'opacity-0');
+      // Sembunyikan ikon musik agar tidak menutupi atau mengganggu
+      musicBtn.classList.add('opacity-0', 'pointer-events-none');
     }
+
     function closeModal() {
       photoModal.classList.add('opacity-0', 'pointer-events-none');
+      // Tampilkan kembali tombol musik
+      musicBtn.classList.remove('opacity-0', 'pointer-events-none');
     }
 
     document.querySelectorAll('.gallery-item').forEach(item => {
@@ -925,7 +939,7 @@
     });
 
     /* ============================================================
-       LOGIKA KUPON: PINDAH-PINDAH 5 KALI & KLAIM WHATSAPP
+       LOGIKA KUPON: LARI JAUH KELUAR AREA & KLAIM WHATSAPP
        ============================================================ */
     let runCount1 = 0;
     let runCount2 = 0;
@@ -935,7 +949,7 @@
       "Eits, gak kena! 😜",
       "Wlee coba lagi 😝",
       "Kok susah yaa? 🤪",
-      "Hampir kena tuh! 🏃‍♂️️",
+      "Hampir kena tuh! 🏃‍♂️",
       "Sekali lagi deh! 🤭"
     ];
 
@@ -946,14 +960,15 @@
         let currentCount = (counterKey === 1) ? runCount1 : runCount2;
 
         if (currentCount < maxEscapes) {
-          const randomX = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 45 + 30);
-          const randomY = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 35 + 15);
+          // Lari jauh ke area layar bebas (hingga 140px horizontal dan 110px vertikal)
+          const randomX = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 60 + 75);
+          const randomY = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 50 + 55);
 
-          btnElement.style.transform = `translate(${randomX}px, ${randomY}px) scale(0.9)`;
+          btnElement.style.transform = `translate(${randomX}px, ${randomY}px) scale(0.92)`;
           btnElement.textContent = "Kabur! 💨";
 
           subTextElement.textContent = playfulTeases[currentCount];
-          subTextElement.className = "text-[10px] text-pink-300 font-semibold animate-pulse";
+          subTextElement.className = "text-xs text-pink-300 font-bold animate-pulse";
 
           if (counterKey === 1) runCount1++;
           else runCount2++;
@@ -962,9 +977,9 @@
             setTimeout(() => {
               btnElement.style.transform = 'translate(0px, 0px) scale(1)';
               btnElement.textContent = 'Klaim Sekarang 🎉';
-              btnElement.className = 'px-3 py-1.5 rounded-lg bg-green-500 hover:bg-green-600 text-[10px] font-bold text-white shadow animate-bounce whitespace-nowrap z-30';
+              btnElement.className = 'px-3.5 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-xs font-bold text-white shadow animate-bounce whitespace-nowrap z-40';
               subTextElement.textContent = 'Yaudah deh, selamat kamu berhasil dapat! 🥳';
-              subTextElement.className = 'text-[10px] text-green-300 font-semibold';
+              subTextElement.className = 'text-xs text-green-300 font-bold';
             }, 300);
           }
         } else {
@@ -985,6 +1000,7 @@
     const subVoucher2 = document.getElementById('subVoucher2');
     applyRunawayEffect(btnRun2, subVoucher2, 'Kupon Jalan-Jalan Seharian', 2);
 
+    // Voucher 3 (Pelukan): Tampilan sama persis, langsung bisa diklaim
     document.getElementById('btnInstantClaim').addEventListener('click', () => {
       sendToWhatsApp('Kupon Pelukan Hangat & Pendengar Setia');
     });
@@ -1021,15 +1037,15 @@
       runCount2 = 0;
       btnRun1.style.transform = 'translate(0px, 0px)';
       btnRun1.textContent = 'Klaim';
-      btnRun1.className = 'btn-runaway px-3 py-1.5 rounded-lg bg-pink-500/80 hover:bg-pink-600 text-[10px] font-bold text-white shadow whitespace-nowrap z-30';
+      btnRun1.className = 'btn-runaway px-3.5 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-xs font-bold text-white shadow whitespace-nowrap';
       subVoucher1.textContent = 'Pilih makanan apa aja hari ini, aku bayarin!';
-      subVoucher1.className = 'text-[10px] text-white/60';
+      subVoucher1.className = 'text-xs text-white/70 font-medium';
 
       btnRun2.style.transform = 'translate(0px, 0px)';
       btnRun2.textContent = 'Klaim';
-      btnRun2.className = 'btn-runaway px-3 py-1.5 rounded-lg bg-pink-500/80 hover:bg-pink-600 text-[10px] font-bold text-white shadow whitespace-nowrap z-30';
+      btnRun2.className = 'btn-runaway px-3.5 py-2 rounded-lg bg-pink-500 hover:bg-pink-600 text-xs font-bold text-white shadow whitespace-nowrap';
       subVoucher2.textContent = 'Bebas tentukan rute yang kamu mau.';
-      subVoucher2.className = 'text-[10px] text-white/60';
+      subVoucher2.className = 'text-xs text-white/70 font-medium';
 
       goToScreen('screen1');
     });
